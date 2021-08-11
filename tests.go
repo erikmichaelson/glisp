@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"testing"
 )
@@ -24,7 +23,7 @@ func TestParser(t *testing.T) {
 		testname := test.input
 
 		t.Run(testname, func(t *testing.T) {
-			ans := parse_next_depth_expr(test.input)
+			ans := glisp.parse_next_depth_expr(test.input)
 			if ans != test.expects {
 				t.Errorf("got %s, want %s", ans, test.expects)
 			}
@@ -35,7 +34,7 @@ func TestParser(t *testing.T) {
 
 func TestLiterals(t *testing.T) {
 	t.Run("Literal", func(t *testing.T) {
-				ans := run_program("12")
+				ans := glisp.run_program("12")
 				if ans != 12 {
 					t.Errorf("got %s, want %s", ans, 12)
 				}
@@ -57,7 +56,7 @@ func TestBasicLists(t *testing.T) {
 			testname := test.input
 
 			t.Run(testname, func(t *testing.T) {
-				ans := run_program(test.input)
+				ans := glisp.run_program(test.input)
 				if ans != test.expects {
 					t.Errorf("got %s, want %s", ans, test.expects)
 				}
