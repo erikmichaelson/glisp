@@ -1,8 +1,10 @@
-package main
+package glisp_test
 
 import (
 	"math"
 	"testing"
+
+	"github.com/erikmichaelson/glisp"
 )
 // TODO: translate this
 //from lis import *
@@ -23,7 +25,7 @@ func TestParser(t *testing.T) {
 		testname := test.input
 
 		t.Run(testname, func(t *testing.T) {
-			ans := glisp.parse_next_depth_expr(test.input)
+			ans := Parse_next_depth_expr(test.input)
 			if ans != test.expects {
 				t.Errorf("got %s, want %s", ans, test.expects)
 			}
@@ -34,7 +36,7 @@ func TestParser(t *testing.T) {
 
 func TestLiterals(t *testing.T) {
 	t.Run("Literal", func(t *testing.T) {
-				ans := glisp.run_program("12")
+				ans := Run_program("12")
 				if ans != 12 {
 					t.Errorf("got %s, want %s", ans, 12)
 				}
@@ -56,7 +58,7 @@ func TestBasicLists(t *testing.T) {
 			testname := test.input
 
 			t.Run(testname, func(t *testing.T) {
-				ans := glisp.run_program(test.input)
+				ans := Run_program(test.input)
 				if ans != test.expects {
 					t.Errorf("got %s, want %s", ans, test.expects)
 				}
@@ -70,7 +72,7 @@ TODO
 
 func TestAdvanced(t *testing.T) {
 	t.Run("Advanced", func(t *testing.T) {
-		ans := run_program("(if (> (val x) 0)\n(fn (+ (aref A i) (* 3 i))\n(quote (one two)))")
+		ans := Run_program("(if (> (val x) 0)\n(fn (+ (aref A i) (* 3 i))\n(quote (one two)))")
 		if ans != test.expects {
 			t.Errorf("got %s, want %s", ans, test.expects)
 		}
